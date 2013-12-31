@@ -1,0 +1,10 @@
+{
+  "name": "pomodor-text",
+  "dependencies": {
+    "jquery": "x",
+    "jquery-ui": "x",
+    "underscore": "x",
+    "angular": "x"
+  },
+  "version": "0.0.0"
+}

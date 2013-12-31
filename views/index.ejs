@@ -1,0 +1,69 @@
+<% include header %>
+
+<script src="/public/app/ngEnter.js"></script>
+<script src="/public/app/index.js"></script>
+
+<div id="dashboard" ng-app="App" ng-controller="AppCtrl">
+  <div class="row">
+    <input type="text" ng-model="message" placeholder="message" class="col-md-10" />
+    <div class="clearfix visible-xs visible-sm" style="margin-top: 10px"></div>
+    <a class="col-md-2" ng-click="sendText()">submit</a>
+  </div>
+  <hr />
+  <div class="row" ng-show="hasPomodoro()">
+    {{ currentPomodoro.title }} - {{ currentPomodoro.minutesLeft }}
+  </div>
+  <div class="row" ng-show="!hasPomodoro()">
+    no pomodoro is currently running.
+  </div>
+  <div class="row" ng-show="hasBreak()">
+    yay! you're on a break - {{ currentBreak.minutesLeft }}
+  </div>
+</div>
+
+<script>
+  var index = angular.module("App", []);
+
+  index.controller("AppCtrl", function($scope, $http) {
+
+    $scope.sendText = function() {
+      console.log('sending');
+      $http.post('/text', { Body: $scope.message })
+        .success(function(data, status, headers, config) {
+        });
+    };
+
+    $scope.currentPomodoro = { };
+
+    $scope.hasPomodoro = function() {
+      return $scope.currentPomodoro.startTime;
+    };
+
+    $scope.hasBreak = function() {
+      return $scope.currentBreak.startTime;
+    };
+
+    $scope.getCurrentPomodoro = function() {
+      $http({ method: 'GET', url: '/current' })
+          .success(function(pomodoro) {
+            pomodoro.minutesLeft = Math.round(pomodoro.minutesLeft);
+            $scope.currentPomodoro = pomodoro;
+          });
+    }
+
+    $scope.getCurrentBreak = function() {
+      $http({ method: 'GET', url: '/break' })
+          .success(function(currentBreak) {
+            currentBreak.minutesLeft = Math.round(currentBreak.minutesLeft);
+            $scope.currentBreak = currentBreak;
+          });
+    }
+
+    setInterval(function() {
+      $scope.getCurrentPomodoro();
+      $scope.getCurrentBreak();
+    }, 1000);
+  });
+</script>
+
+<% include footer %>

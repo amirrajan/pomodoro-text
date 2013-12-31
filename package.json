@@ -1,0 +1,37 @@
+{
+  "name": "pomodoro",
+  "version": "0.0.4-83",
+  "description": "Manage pomodoro session through text messages",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amirrajan/sortis.git"
+  },
+  "dependencies": {
+    "express": "~3.0.1",
+    "ejs": "~0.8.3",
+    "jasmine-node": "~1.0.26",
+    "underscore": "~1.4.2",
+    "socket.io": "~0.9.11",
+    "qs": "~0.6.5",
+    "oauth": "~0.9.10",
+    "redis": "~0.8.4",
+    "redis-url": "0.1.0",
+    "twilio": "~1.1.4",
+    "request": "~2.27.0",
+    "bower": "~1.2.8"
+  },
+  "subdomain": "pomodoro",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "devDependencies": {
+    "grunt-nodemon": "~0.1.2",
+    "grunt": "~0.4.2",
+    "grunt-env": "~0.4.1",
+    "localtunnel": "~0.1.3"
+  }
+}
