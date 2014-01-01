@@ -3,11 +3,12 @@ var _ = require('underscore');
 var http = require('http');
 var app = express();
 var server = require('http').createServer(app);
-var accountController = require('./server/accountController');
-var homeController = require('./server/homeController');
-var pulse = require('./server/pulse');
+var accountController = require('./server/controllers/accountController');
+var historyController = require('./server/controllers/historyController');
+var homeController = require('./server/controllers/homeController');
+var pulse = require('./server/controllers/pulseController');
 var redis = require("redis");
-var pomodoro = require("./server/pomodoro");
+var pomodoro = require("./server/models/pomodoro");
 
 //setup a redis client based on if the environment is development or production
 //var client = redis.createClient();
@@ -27,6 +28,7 @@ app.use(express.session({ secret: process.env.twilioAccountSid }));
 app.use(app.router);
 
 accountController.init(app);
+historyController.init(app);
 homeController.init(app);
 pulse.init(app);
 

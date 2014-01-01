@@ -33,6 +33,13 @@ function backToWork() {
   clearBreak();
 }
 
+function clearAll() {
+  textMessage.send("done.");
+
+  clearTask();
+  clearBreak();
+}
+
 function currentBreak() {
   currentPomodoroBreak.minutesLeft = (currentPomodoroBreak.endTime - new Date()) / minutes(1);
   return currentPomodoroBreak;
@@ -84,3 +91,4 @@ module.exports.isWorkingOnTask = isWorkingOnTask;
 module.exports.isOnBreak = isOnBreak;
 module.exports.startBreak = startBreak;
 module.exports.tick = tick;
+module.exports.clearAll = clearAll;

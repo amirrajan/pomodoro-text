@@ -65,6 +65,7 @@ twilioAccountSid=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ;twilio account sid (see scr
 twilioAuthToken=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ;twilio auth token (see screeshots)
 enableAuth=false
 deployUrl=http://localhost:3000
+supressTextMessages=false
 </pre>
 
 Values are located here and here:
@@ -100,6 +101,10 @@ Update the Messaging Request Url
 At this point, you should be able to send a text to the Twilio number, and you should receive a reply stating that your pomodoro has started.
 
 If you do not wish to expose your locally running instance to Twilio (or can't because of network restrictions), you can still start and stop pomodoros using the web interface (as if it were your phone, just send the same text messages you would have done through your phone and click the submit button). You will still get text messages notifying you about your sessions.
+
+If you want to dispable text messages all together, set `supressTextMessages` to `true` in `.env`:
+
+    supressTextMessages=true
 
 ### Running the app "in the cloud" 
 
@@ -140,6 +145,7 @@ Set environment variables on the server:
     heroku config:set twilioAuthToken=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     heroku config:set enableAuth=true
     heroku config:set deployUrl=http://YOURAPPNAME.herokuapp.com
+    heroku config:set supressTextMessages=false
 
 Open the app (same as opening it in the browser):
 

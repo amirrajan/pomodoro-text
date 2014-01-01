@@ -1,0 +1,19 @@
+<% include header %>
+
+<script src="/public/app/ngEnter.js"></script>
+<script src="/public/app/index.js"></script>
+
+<div id="dashboard" ng-app="App" ng-controller="AppCtrl">
+  <div class="row">
+    hello
+  </div>
+</div>
+
+<script>
+  var index = angular.module("App", []);
+
+  index.controller("AppCtrl", function($scope, $http) {
+  });
+</script>
+
+<% include footer %>

@@ -13,8 +13,8 @@
   <div class="row" style="display: none" ng-show="hasPomodoro()">
     {{ currentPomodoro.title }} - {{ currentPomodoro.minutesLeft }} minutes left
   </div>
-  <div class="row" style="display: none" ng-show="!hasPomodoro()">
-    no pomodoro is currently running
+  <div class="row" style="display: none" ng-show="isLazy()">
+    no pomodoro is currently running, you lazy, lazy human
   </div>
   <div class="row" style="display: none" ng-show="hasBreak()">
     yay! you're on a break, you've earned it! - {{ currentBreak.minutesLeft }} minutes left
@@ -44,6 +44,9 @@
     };
     
     $scope.isLazy = function() {
+      if($scope.hasPomodoro()) return false;
+      if($scope.hasBreak()) return false;
+      return true;
     }
 
     $scope.getCurrentPomodoro = function() {

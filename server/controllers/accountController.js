@@ -1,5 +1,5 @@
 var env = process.env;
-var textMessage = require('./textMessage');
+var textMessage = require('../models/textMessage');
 
 function init(app) {
   app.get('/login', function (req, res) {
