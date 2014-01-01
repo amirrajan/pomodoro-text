@@ -26,7 +26,7 @@ function init(app) {
         var currentTask = pomodoro.currentBreak();
         textMessage.send("yay! you're on a break - " + currentTask.minutesLeft.toFixed(2) + " minute(s) left.");
       } else {
-        textMessage.send("no pomodoro is currently running, reply to me to start one, or by lazy and do nothing");
+        textMessage.send("no pomodoro is currently running, reply to me to start one, or be lazy and do nothing");
       }
     } else if (message.match(/^\s*break\s*$/i)) {
       pomodoro.startBreak();
