@@ -22,7 +22,7 @@ Here is an example text conversation you can have with Pomodoro Text:
 
 - `status`: "no pomodoro's currently running"
 - `need to create readme`: "need to create readme started at Tue Dec 31 2013 21:54:18 GMT+0000 UTC"
-- `status`: "task: create readme - 25 minute(s) left"
+- `status`: "need to create readme started - 25 minute(s) left"
 - work for 25 minutes....
 - you'll get a text: "take a break!"
 - `status`: "yay! you're on a break - 7 minute(s) left"
@@ -30,6 +30,8 @@ Here is an example text conversation you can have with Pomodoro Text:
 - you'll get a text: "back to work!"
 - `status`: "no pomodoro's currently running"
 - `take care of bills`: "take care of bills at ..." 
+- `clear` or ` ` cancels the current action, whether it's a break or a task
+- any pre-mature changes in a task will change the end time (logging it as an interruption)
 
 Hopefully you get the idea. Features in the pipeline:
 

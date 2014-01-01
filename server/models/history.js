@@ -18,9 +18,7 @@ function tasks(callback) {
 }
 
 function saveTask(task) {
-  var id = task.startTime.getTime();
-  task.id = id;
-  client.hset('tasks', id, JSON.stringify(task));
+  client.hset('tasks', task.id, JSON.stringify(task));
 }
 
 module.exports.tasks = tasks;

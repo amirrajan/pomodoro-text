@@ -1,14 +1,18 @@
 <% include header %>
 
+<style>
+  .interrupted { color: #A94442; }
+</style>
+
 <div id="dashboard" ng-app="App" ng-controller="AppCtrl">
   <div class="row">
     <h3>History</h3>
     <hr/>
   </div>
   <div class="row">
-    <div ng-repeat="task in tasks" style="margin-bottom: 15px">
+    <div ng-repeat="task in tasks" style="margin-bottom: 15px" ng-class="interruptedClass(task)" >
       <div style="line-height: 0px;">{{ task.title }}</div>
-      <span style="font-size: x-small">{{ task.startTime | date: "medium" }} - {{ task.endTime | date: "medium" }}</span>
+      <span style="font-size: x-small">{{ task.length }} minutes, {{ task.startTime | date: "medium" }} - {{ task.endTime | date: "medium" }}</span>
     </div>
   </div>
 </div>
@@ -21,13 +25,21 @@
     $scope.getTasks = function() {
       $http({ method: 'GET', url: '/history/tasks' })
         .success(function(tasks) {
+          tasks = tasks || [];
           _.each(tasks, function(t) { 
             t.startTime = new Date(t.startTime);
             t.endTime = new Date(t.endTime);
-            console.log(t);
+            t.length = Math.round((t.endTime - t.startTime) / 60000);
+            t.interrupted = t.length.toFixed(2) < 25;
           });
+
           $scope.tasks = tasks;
         });
+    };
+
+    $scope.interruptedClass = function(task) {
+      console.log(task.interrupted ? "interrupted" : "");
+      return task.interrupted ? "interrupted" : "";
     };
 
     $scope.getTasks();

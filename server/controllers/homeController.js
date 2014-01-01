@@ -32,6 +32,8 @@ function init(app) {
       pomodoro.startBreak();
     } else if (message.match(/^\s*clear\s*$/i)) {
       pomodoro.clearAll();
+    } else if (message.match(/^\s*$/i)) {
+      pomodoro.clearAll();
     } else {
       pomodoro.startTask(message);
     }

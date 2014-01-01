@@ -9,6 +9,7 @@ var breakLength = 7;
 function startTask(description) {
   clearBreak();
   currentPomodoroTask = {
+    id: new Date().getTime(),
     title: description,
     startTime: new Date(),
     endTime: new Date(new Date().getTime() + minutes(pomodoroLength))
@@ -37,7 +38,7 @@ function backToWork() {
 }
 
 function clearAll() {
-  textMessage.send("done.");
+  textMessage.send("cleared.");
 
   clearTask();
   clearBreak();
@@ -66,6 +67,9 @@ function isOnBreak() {
 }
 
 function clearTask() {
+  if(!isWorkingOnTask()) return;
+  currentTask().endTime = new Date();
+  history.saveTask(currentTask());
   currentPomodoroTask = { };
 }
 
