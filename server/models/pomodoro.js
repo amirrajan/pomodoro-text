@@ -1,19 +1,22 @@
 var env = process.env;
 var textMessage = require('./textMessage');
-var currentPomodoro = { };
+var history = require('./history');
+var currentPomodoroTask = { };
 var currentPomodoroBreak = { };
 var pomodoroLength = 25;
 var breakLength = 7;
 
 function startTask(description) {
   clearBreak();
-  currentPomodoro = {
+  currentPomodoroTask = {
     title: description,
     startTime: new Date(),
     endTime: new Date(new Date().getTime() + minutes(pomodoroLength))
   };
 
-  textMessage.send(currentPomodoro.title + " started at " + new Date());
+  history.saveTask(currentPomodoroTask);
+
+  textMessage.send(currentPomodoroTask.title + " started at " + new Date());
 }
 
 function startBreak() {
@@ -50,8 +53,8 @@ function minutes(value) {
 }
 
 function currentTask() {
-  currentPomodoro.minutesLeft = (currentPomodoro.endTime - new Date()) / minutes(1);
-  return currentPomodoro;
+  currentPomodoroTask.minutesLeft = (currentPomodoroTask.endTime - new Date()) / minutes(1);
+  return currentPomodoroTask;
 }
 
 function isWorkingOnTask() {
@@ -63,7 +66,7 @@ function isOnBreak() {
 }
 
 function clearTask() {
-  currentPomodoro = { };
+  currentPomodoroTask = { };
 }
 
 function clearBreak() {

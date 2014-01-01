@@ -41,6 +41,8 @@ Hopefully you get the idea. Features in the pipeline:
 
 Go to http://nodejs.org and install NodeJS
 
+Go to http://redis.io/download and install Redis. Or use Chocolatey (Windows), Brew (Mac), apt-get flavor for your Linux distro.
+
 Then clone this repo:
 
     git clone https://github.com/amirrajan/pomodoro-text.git
@@ -127,6 +129,10 @@ Login using the command line tool:
 Create your heroku app:
 
     heroku create YOURAPPNAME
+
+Add redis to your app
+
+    heroku addons:add redistogo:nano
 
 Git deploy your app:
 

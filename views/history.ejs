@@ -1,11 +1,15 @@
 <% include header %>
 
-<script src="/public/app/ngEnter.js"></script>
-<script src="/public/app/index.js"></script>
-
 <div id="dashboard" ng-app="App" ng-controller="AppCtrl">
   <div class="row">
-    hello
+    <h3>History</h3>
+    <hr/>
+  </div>
+  <div class="row">
+    <div ng-repeat="task in tasks" style="margin-bottom: 15px">
+      <div style="line-height: 0px;">{{ task.title }}</div>
+      <span style="font-size: x-small">{{ task.startTime | date: "medium" }} - {{ task.endTime | date: "medium" }}</span>
+    </div>
   </div>
 </div>
 
@@ -13,6 +17,20 @@
   var index = angular.module("App", []);
 
   index.controller("AppCtrl", function($scope, $http) {
+    $scope.tasks = [ ];
+    $scope.getTasks = function() {
+      $http({ method: 'GET', url: '/history/tasks' })
+        .success(function(tasks) {
+          _.each(tasks, function(t) { 
+            t.startTime = new Date(t.startTime);
+            t.endTime = new Date(t.endTime);
+            console.log(t);
+          });
+          $scope.tasks = tasks;
+        });
+    };
+
+    $scope.getTasks();
   });
 </script>
 

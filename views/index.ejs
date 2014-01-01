@@ -1,8 +1,5 @@
 <% include header %>
 
-<script src="/public/app/ngEnter.js"></script>
-<script src="/public/app/index.js"></script>
-
 <div id="dashboard" ng-app="App" ng-controller="AppCtrl">
   <div class="row">
     <input type="text" ng-model="message" placeholder="message" class="col-md-10" />
@@ -51,18 +48,18 @@
 
     $scope.getCurrentPomodoro = function() {
       $http({ method: 'GET', url: '/current' })
-          .success(function(pomodoro) {
-            pomodoro.minutesLeft = (pomodoro.minutesLeft || 0).toFixed(2);
-            $scope.currentPomodoro = pomodoro;
-          });
+        .success(function(pomodoro) {
+          pomodoro.minutesLeft = (pomodoro.minutesLeft || 0).toFixed(2);
+          $scope.currentPomodoro = pomodoro;
+        });
     }
 
     $scope.getCurrentBreak = function() {
       $http({ method: 'GET', url: '/break' })
-          .success(function(currentBreak) {
-            currentBreak.minutesLeft = (currentBreak.minutesLeft || 0).toFixed(2);
-            $scope.currentBreak = currentBreak;
-          });
+        .success(function(currentBreak) {
+          currentBreak.minutesLeft = (currentBreak.minutesLeft || 0).toFixed(2);
+          $scope.currentBreak = currentBreak;
+        });
     }
 
     $scope.getCurrentPomodoro();

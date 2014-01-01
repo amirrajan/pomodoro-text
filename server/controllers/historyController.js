@@ -9,7 +9,7 @@ function init(app) {
 
   app.get('/history/tasks', authorized, function (req, res) {
     history.tasks(function(tasks) {
-      res.json({ tasks: tasks });
+      res.json(tasks);
     });
   });
 }
