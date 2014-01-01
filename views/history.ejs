@@ -11,8 +11,15 @@
   </div>
   <div class="row">
     <div ng-repeat="task in tasks" style="margin-bottom: 15px" ng-class="interruptedClass(task)" >
-      <div style="line-height: 0px;">{{ task.title }}</div>
-      <span style="font-size: x-small">{{ task.length }} minutes, {{ task.startTime | date: "medium" }} - {{ task.endTime | date: "medium" }}</span>
+      <div style="line-height: 30px;">
+        {{ task.title }} 
+      </div>
+      <div style="font-size: small; line-height: 15px;">
+        {{ task.length }} minutes, {{ task.startTime | date: "medium" }} - {{ task.endTime | date: "mediumTime" }}
+      </div>
+      <div>
+        <a href="javascript:;" style="line-height: 5px;" ng-click="deleteTask(task)">delete</a>
+      </div>
     </div>
   </div>
 </div>
@@ -21,11 +28,10 @@
   var index = angular.module("App", []);
 
   index.controller("AppCtrl", function($scope, $http) {
-    $scope.tasks = [ ];
+    $scope.tasks = { };
     $scope.getTasks = function() {
       $http({ method: 'GET', url: '/history/tasks' })
         .success(function(tasks) {
-          tasks = tasks || [];
           _.each(tasks, function(t) { 
             t.startTime = new Date(t.startTime);
             t.endTime = new Date(t.endTime);
@@ -40,6 +46,13 @@
     $scope.interruptedClass = function(task) {
       console.log(task.interrupted ? "interrupted" : "");
       return task.interrupted ? "interrupted" : "";
+    };
+
+    $scope.deleteTask = function(task) {
+      $http.post('/history/delete', { id: task.id })
+        .success(function(data, status, headers, config) {
+          $scope.getTasks();
+        });
     };
 
     $scope.getTasks();

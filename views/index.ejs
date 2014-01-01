@@ -7,6 +7,18 @@
     <a class="col-md-2" ng-click="sendText()">submit</a>
   </div>
   <hr />
+  <div class="row">
+    <p>
+      Sending a <code>text</code> or posting a <code>message</code> using the form above will perform: action
+    </p>
+    <ul>
+      <li><code>break</code>: starts a break</li>
+      <li><code>clear</code> or <code>[spaces] (empty message)</code>: aborts current task or break</li>
+      <li><code>status</code>: gives you the current status</li>
+      <li><code>any other phrase</code>: starts a new task, ending the previous one if applicable</li>
+    </ul>
+  </div>
+  <hr />
   <div class="row" style="display: none" ng-show="hasPomodoro()">
     {{ currentPomodoro.title }} - {{ currentPomodoro.minutesLeft }} minutes left
   </div>
@@ -29,6 +41,7 @@
       console.log('sending');
       $http.post('/text', { Body: $scope.message })
         .success(function(data, status, headers, config) {
+          $scope.message = "";
         });
     };
 

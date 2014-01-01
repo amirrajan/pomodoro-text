@@ -7,6 +7,7 @@ var pomodoroLength = 25;
 var breakLength = 7;
 
 function startTask(description) {
+  clearTask();
   clearBreak();
   currentPomodoroTask = {
     id: new Date().getTime(),

@@ -12,6 +12,11 @@ function init(app) {
       res.json(tasks);
     });
   });
+
+  app.post('/history/delete', authorized, function (req, res) {
+    history.deleteTask(req.body.id);
+    res.json({ });
+  });
 }
 
 module.exports.init = init;
