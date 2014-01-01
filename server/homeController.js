@@ -8,7 +8,7 @@ function init(app) {
   });
 
   app.get('/current', authorized, function(req, res) {
-    res.json(pomodoro.current());
+    res.json(pomodoro.currentTask());
   });
 
   app.get('/break', authorized, function(req, res) {
@@ -19,19 +19,19 @@ function init(app) {
     var message = req.body.Body;
 
     if(message.match(/status/i)) {
-      if(pomodoro.isRunning()) {
-        var current = pomodoro.current();
-        textMessage.send(current.title + " - " + Math.round(current.minutesLeft) + " minute(s) left.");
+      if(pomodoro.isWorkingOnTask()) {
+        var currentTask = pomodoro.currentTask();
+        textMessage.send(currentTask.title + " - " + Math.round(currentTask.minutesLeft) + " minute(s) left.");
       } else if(pomodoro.isOnBreak()) {
-        var current = pomodoro.currentBreak();
-        textMessage.send("yay! you're on a break - " + Math.round(current.minutesLeft) + " minute(s) left.");
+        var currentTask = pomodoro.currentBreak();
+        textMessage.send("yay! you're on a break - " + Math.round(currentTask.minutesLeft) + " minute(s) left.");
       } else {
         textMessage.send("no pomodoro is currently running, reply to me to start one.");
       }
     } else if (message.match(/break/i)) {
       pomodoro.startBreak();
     } else {
-      pomodoro.exec(message);
+      pomodoro.startTask(message);
     }
 
     res.json({ });

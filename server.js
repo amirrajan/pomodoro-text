@@ -7,6 +7,7 @@ var accountController = require('./server/accountController');
 var homeController = require('./server/homeController');
 var pulse = require('./server/pulse');
 var redis = require("redis");
+var pomodoro = require("./server/pomodoro");
 
 //setup a redis client based on if the environment is development or production
 //var client = redis.createClient();
@@ -30,3 +31,6 @@ homeController.init(app);
 pulse.init(app);
 
 server.listen(process.env.PORT || 3000);
+setInterval(function() {
+  pomodoro.tick();
+}, 1000);

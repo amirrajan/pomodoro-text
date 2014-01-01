@@ -87,7 +87,7 @@ After the app is running, you need to expose the site publically so that Twilio 
 
     lt --port 3000
 
-You'll be given a url when `lt` runs. Update the `Messaging Request URL` to be the provided by local tunnel _plus_ `/text`. For example, if local tunnel gave you `https://xknteuaexs.localtunnel.me`, then the value you need to place in Twilio is `https://xknteuaexs.localtunnel.me/text`.
+You'll be given a url when `lt` runs. Update the `Messaging Request URL` to be the url provided by local tunnel _plus_ `/text`. For example, if local tunnel gave you `https://xknteuaexs.localtunnel.me`, then the value you need to place in Twilio is `https://xknteuaexs.localtunnel.me/text`.
 
 Click the number you want to edit:
 

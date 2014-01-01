@@ -10,14 +10,14 @@
     <a class="col-md-2" ng-click="sendText()">submit</a>
   </div>
   <hr />
-  <div class="row" ng-show="hasPomodoro()">
-    {{ currentPomodoro.title }} - {{ currentPomodoro.minutesLeft }}
+  <div class="row" style="display: none" ng-show="hasPomodoro()">
+    {{ currentPomodoro.title }} - {{ currentPomodoro.minutesLeft }} minutes left
   </div>
-  <div class="row" ng-show="!hasPomodoro()">
-    no pomodoro is currently running.
+  <div class="row" style="display: none" ng-show="!hasPomodoro()">
+    no pomodoro is currently running
   </div>
-  <div class="row" ng-show="hasBreak()">
-    yay! you're on a break - {{ currentBreak.minutesLeft }}
+  <div class="row" style="display: none" ng-show="hasBreak()">
+    yay! you're on a break, you've earned it! - {{ currentBreak.minutesLeft }} minutes left
   </div>
 </div>
 
@@ -25,6 +25,8 @@
   var index = angular.module("App", []);
 
   index.controller("AppCtrl", function($scope, $http) {
+    $scope.currentPomodoro = { };
+    $scope.currentBreak = { };
 
     $scope.sendText = function() {
       console.log('sending');
@@ -33,8 +35,6 @@
         });
     };
 
-    $scope.currentPomodoro = { };
-
     $scope.hasPomodoro = function() {
       return $scope.currentPomodoro.startTime;
     };
@@ -42,11 +42,14 @@
     $scope.hasBreak = function() {
       return $scope.currentBreak.startTime;
     };
+    
+    $scope.isLazy = function() {
+    }
 
     $scope.getCurrentPomodoro = function() {
       $http({ method: 'GET', url: '/current' })
           .success(function(pomodoro) {
-            pomodoro.minutesLeft = Math.round(pomodoro.minutesLeft);
+            pomodoro.minutesLeft = (pomodoro.minutesLeft || 0).toFixed(2);
             $scope.currentPomodoro = pomodoro;
           });
     }
@@ -54,10 +57,13 @@
     $scope.getCurrentBreak = function() {
       $http({ method: 'GET', url: '/break' })
           .success(function(currentBreak) {
-            currentBreak.minutesLeft = Math.round(currentBreak.minutesLeft);
+            currentBreak.minutesLeft = (currentBreak.minutesLeft || 0).toFixed(2);
             $scope.currentBreak = currentBreak;
           });
     }
+
+    $scope.getCurrentPomodoro();
+    $scope.getCurrentBreak();
 
     setInterval(function() {
       $scope.getCurrentPomodoro();
