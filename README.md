@@ -33,7 +33,7 @@ Here is an example text conversation you can have with Pomodoro Text:
 - `clear` or ` ` cancels the current action, whether it's a break or a task
 - any pre-mature changes in a task will change the end time (logging it as an interruption)
 
-So you could have a conversation like this:
+So you could have a conversation like this with Pomodoro Text:
 
 <img src="phoneScreenshot.png" />
 
