@@ -40,12 +40,18 @@ function init(app) {
   });
 }
 
+function isAuthorized(req) {
+  if(!env.enableAuth.bool()) return true;
+
+  return req.session.passwordCorrect && req.session.mobileConfirmCorrect;
+}
+
 function authorized(req, res, next) {
   if(!env.enableAuth.bool()) {
     next();
-  } else if (req.session.passwordCorrect && req.session.mobileConfirmCorrect) {
+  } else if(isAuthorized(req)) {
     next();
-  } else if (req.session.passwordCorrect) {
+  } else if(req.session.passwordCorrect) {
     res.redirect('/login2');
   } else {
     res.redirect('/login');
@@ -54,3 +60,4 @@ function authorized(req, res, next) {
 
 module.exports.init = init;
 module.exports.authorized = authorized;
+module.exports.isAuthorized = isAuthorized;
