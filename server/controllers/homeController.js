@@ -35,7 +35,7 @@ function init(app) {
       if(pomodoro.isWorkingOnTask()) {
         var currentTask = pomodoro.currentTask();
         result.message = currentTask.title + " - " + currentTask.minutesLeft.toFixed(2) + " minute(s) left.";
-        textMessage.send(message);
+        textMessage.send(result.message);
       } else if(pomodoro.isOnBreak()) {
         var currentTask = pomodoro.currentBreak();
         result.message = "yay! you're on a break - " + currentTask.minutesLeft.toFixed(2) + " minute(s) left."
