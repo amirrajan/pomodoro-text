@@ -25,6 +25,7 @@ function init(app) {
     if(!isAuthorized(req)) {
       if(fromNumber != env.mobile) {
         result.message = 'number [' + fromNumber + '] not allowed.';
+        textMessage.send('unauthorized access from: [' + fromNumber + ']'); 
         res.json(result);
         return;
       }
