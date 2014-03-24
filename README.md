@@ -8,7 +8,7 @@ License: MIT
 
 ## It's for developers
 
-This app isn't deployed anywhere for use by the public. It is meant to be deployed **by you, the developer**. Pomodoro Text is a single user application that you can deploy to the **NodeJS** provider of your choice (I've included instructions for deploying to Heroku). **You own the code and the data. Extend this app as you see fit. Make your own twitter mashups. Publish your code for others to learn, fork, extend and deploy**.
+This app isn't deployed anywhere for use by the public. It is meant to be deployed **by you, the developer**. Pomodoro Text is a single user application that you can deploy to the **NodeJS** provider of your choice (I've included instructions for deploying to Heroku). **You own the code and the data. Extend this app as you see fit. Publish your code for others to learn, fork, extend and deploy**.
 
 ## What Pomodoro Text Does 
 
