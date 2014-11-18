@@ -20,7 +20,7 @@ After you have deployed Pomodoro Text, you can send a text message the Twilio ac
 
 Here is an example text conversation you can have with Pomodoro Text:
 
-- `status`: "no pomodoro's currently running"
+- `status`: "no pomodoro is currently running"
 - `need to create readme`: "need to create readme started at Tue Dec 31 2013 21:54:18 GMT+0000 UTC"
 - `status`: "need to create readme started - 25 minute(s) left"
 - work for 25 minutes....
@@ -28,8 +28,8 @@ Here is an example text conversation you can have with Pomodoro Text:
 - `status`: "yay! you're on a break - 7 minute(s) left"
 - browse the internet for 7 minutes
 - you'll get a text: "back to work!"
-- `status`: "no pomodoro's currently running"
-- `take care of bills`: "take care of bills at ..." 
+- `status`: "no pomodoro is currently running"
+- `take care of bills`: "take care of bills at ..."
 - `clear` or ` ` cancels the current action, whether it's a break or a task
 - any pre-mature changes in a task will change the end time (logging it as an interruption)
 
