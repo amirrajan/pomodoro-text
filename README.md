@@ -10,7 +10,7 @@ License: MIT
 
 This app isn't deployed anywhere for use by the public. It is meant to be deployed **by you, the developer**. Pomodoro Text is a single user application that you can deploy to the **NodeJS** provider of your choice (I've included instructions for deploying to Heroku). **You own the code and the data. Extend this app as you see fit. Publish your code for others to learn, fork, extend and deploy**.
 
-## What Pomodoro Text Does 
+## What Pomodoro Text Does
 
 After you have deployed Pomodoro Text, you can send a text message the Twilio account associated with your deployment:
 
@@ -63,7 +63,7 @@ And `cd` into the directory (all instructions below assume you are in the `pomod
 
 Sign up with a free Twilio account: https://www.twilio.com/try-twilio
 
-Create a `.env` file locally at `pomodoro-text` root:
+Create a `.env` file locally at `pomodoro-text` root (there is an `env.sample` file for reference:
 
 <pre>
 password=YourPasswordForTwoPhaseAuthorization
@@ -85,6 +85,10 @@ Values are located here and here:
 Using a command prompt where `node` is available, run the following command to install all Pomodoro Text dependencies:
 
     npm install (you may need to prefix this with sudo if you're on Mac/Linux)
+
+Make sure your redis server is running:
+
+    redis-server
 
 At this point you'll should be able to run the app locally by running the following command:
 
@@ -114,7 +118,7 @@ If you want to dispable text messages all together, set `supressTextMessages` to
 
     supressTextMessages=true
 
-### Running the app "in the cloud" 
+### Running the app "in the cloud"
 
 ### Securing the app with a two-phase auth
 
@@ -122,7 +126,7 @@ Given that this app is hard wired to your Twilio account, it's best that you run
 
 ##Signing up and running Pomodoro Text on Heroku
 
-From heroku.com, click Documentation, then click the Getting Started button, then click Node.js from the list of options on the left...which will take you here: https://devcenter.heroku.com/articles/nodejs 
+From heroku.com, click Documentation, then click the Getting Started button, then click Node.js from the list of options on the left...which will take you here: https://devcenter.heroku.com/articles/nodejs
 
 Install Heroku toolbelt from here: https://toolbelt.heroku.com/
 
